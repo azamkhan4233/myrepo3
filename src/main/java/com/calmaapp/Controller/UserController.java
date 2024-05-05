@@ -80,38 +80,7 @@ public class UserController {
         return "Password is valid";
     }
 
-    // @PostMapping("/login")
-    // public ResponseEntity<String> loginUser(@RequestBody UserDTO userDTO) {
-    // try {
-    // // Attempt to login the user based on the provided phone number
-    // ResponseEntity<String> response = userLoginService.loginUser(userDTO);
 
-    // if (response.getStatusCode().is2xxSuccessful()) {
-    // // If login successful, return the JWT token in the response
-    // return ResponseEntity.ok(response.getBody());
-    // } else {
-    // // If login failed, return the response as it is
-    // return response;
-    // }
-    // } catch (Exception e) {
-    // // Handle any exceptions that occur during login process
-    // return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-    // .body("An error occurred during login process: " + e.getMessage());
-    // }
-    // }
-
-    // @PostMapping("/login")
-    // public ResponseEntity<String> loginUser(@RequestBody UserDTO userDTO) {
-    // String response = userLoginService.loginUser(userDTO);
-
-    // if (response.equals("User not found")) {
-    // return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
-    // } else if (response.equals("Invalid credentials")) {
-    // return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-    // } else {
-    // return ResponseEntity.ok(response);
-    // }
-    // }
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> loginUser(@RequestBody UserDTO userDTO) {
@@ -141,32 +110,6 @@ public class UserController {
 
         return ResponseEntity.ok("User logged out successfully");
     }
-
-    // @PutMapping("/updateLocation/{userId}")
-    // public ResponseEntity<String> updateUserLocation(
-    // @PathVariable Long userId,
-    // @RequestBody Map<String, Double> location) {
-    // try {
-    // // Fetch the user by userId
-    // User user = userService.getUserById(userId);
-
-    // if (user != null) {
-    // // Extract latitude and longitude from the request body
-    // Double latitude = location.get("latitude");
-    // Double longitude = location.get("longitude");
-
-    // // Update user location
-    // userService.updateUserLocation(userId, latitude, longitude);
-
-    // return ResponseEntity.ok("User location updated successfully");
-    // } else {
-    // return ResponseEntity.status(404).body("User not found");
-    // }
-    // } catch (Exception e) {
-    // // Handle exception
-    // return ResponseEntity.status(500).body("Failed to update user location");
-    // }
-    // }
 
     @PutMapping("/updateLocation/{phoneNumber}")
     public ResponseEntity<String> updateUserLocation(
@@ -301,5 +244,22 @@ public class UserController {
             return ResponseEntity.badRequest().body("Invalid OTP. Please try again.");
         }
     }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<?> getUserDetails(@PathVariable Long userId) {
+        try {
+            // Retrieve user details by userId (Assuming you have a userService to handle this)
+            UserDTO userDTO = userService.getUserDetails(userId);
+
+            // Return user details in ResponseEntity
+            return ResponseEntity.ok(userDTO);
+        } catch (Exception e) {
+            // Handle any exceptions and return an error response
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        }
+    }
+
 
 }

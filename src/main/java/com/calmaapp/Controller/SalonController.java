@@ -1,6 +1,5 @@
 package com.calmaapp.Controller;
 
-import com.calmaapp.UserType;
 import com.calmaapp.entity.Salon;
 import com.calmaapp.entity.User;
 import com.calmaapp.exception.UnauthorizedAccessException;
@@ -12,26 +11,16 @@ import com.calmaapp.service.SalonService;
 import com.calmaapp.service.UploadResponse;
 import com.calmaapp.service.UserService;
 import com.clmaapp.exception.SalonNotFoundException;
-import com.mysql.cj.util.StringUtils;
-
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.management.ServiceNotFoundException;
 
 @RestController
 @RequestMapping("/api/salons")
@@ -133,6 +122,7 @@ public class SalonController {
     public ResponseEntity<?> getSalonByIdWithServicesAndReviews(@PathVariable Long salonId) {
         return salonService.getSalonByIdWithServicesAndReviews(salonId);
     }
+
 
     @GetMapping("/withinRadius")
     public ResponseEntity<List<Salon>> getSalonsWithin4KmRadius(@RequestParam("latitude") Double userLatitude,

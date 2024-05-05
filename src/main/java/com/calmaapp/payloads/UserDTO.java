@@ -11,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserDTO {
+	private  long userId;
     private String phoneNumber;
     private UserType userType; 
     private String name;
@@ -23,9 +24,10 @@ public class UserDTO {
 	
 	
 	
-	public UserDTO(String phoneNumber, UserType userType, String name, String password, String email,int age, String location,
+	public UserDTO(long userId,String phoneNumber, UserType userType, String name, String password, String email,int age, String location,
 			String gender, String jwtToken) {
 		super();
+		this.userId=userId;
 		this.phoneNumber = phoneNumber;
 		this.userType = userType;
 		this.name = name;

@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.calmaapp.payloads.*;
+import  com.calmaapp.exception.UserNotFoundException;
 
 import java.security.Principal;
 import java.util.List;
@@ -134,4 +135,26 @@ public class UserService {
         return userRepository.findByResetToken(resetToken);
     }
 
+
+    public UserDTO getUserDetails(Long userId) {
+        // Retrieve user details from the database using userId
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+
+        // Convert User entity to UserDTO
+        return convertToUserDTO(user);
+    }
+
+    private UserDTO convertToUserDTO(User user) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserId(user.getUserId());
+        userDTO.setName(user.getName());
+        userDTO.setEmail(user.getEmail());
+        userDTO.setPhoneNumber(user.getPhoneNumber());
+        userDTO.setAge(user.getAge());
+        userDTO.setGender(user.getGender());
+        userDTO.setPassword(user.getPassword());
+
+        return userDTO;
+    }
 }
