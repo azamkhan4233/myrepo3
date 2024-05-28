@@ -88,3 +88,5 @@ public class SalonDTO {
         this.closingTime = closingTime != null ? closingTime.toString() : null;
     }
 }
+
+
