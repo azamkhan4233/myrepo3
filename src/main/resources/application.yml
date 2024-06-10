@@ -41,7 +41,7 @@ firebase:
 google:
   directions:
     api:
-      key: AIzaSyAZTiI4i3NSYcuZ3DUBeNYnANMYGToosxs
+      key: "****"
 
 cloudinary:
   cloud_name: dqbssukuz
