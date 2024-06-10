@@ -9,7 +9,7 @@ import com.google.maps.model.GeocodingResult;
 @Component
 public class GeocodingService {
 
-    private static final String API_KEY = "AIzaSyAZTiI4i3NSYcuZ3DUBeNYnANMYGToosxs";
+    private static final String API_KEY = "***"; //hidden api key 
 
     public Coordinates getCoordinatesFromAddress(String address) {
         GeoApiContext context = new GeoApiContext.Builder()
