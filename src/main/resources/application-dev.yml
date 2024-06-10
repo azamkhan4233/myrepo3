@@ -39,7 +39,7 @@ firebase:
 google:
   directions:
     api:
-      key: AIzaSyAZTiI4i3NSYcuZ3DUBeNYnANMYGToosxs
+      key:"*****"
 
 
 
@@ -69,7 +69,7 @@ google:
 # firebase.server-key=BMkz8RcsxswEjCL8M43TqG_vjlLFWgxqOI5nhUmHoUxGY05G_-AUhl-O4bJPeXc2N7u1xIqSqFCvLHHmqb93NK8
 # firebase.otp.enabled=true
 
-# google.directions.api.key=AIzaSyAZTiI4i3NSYcuZ3DUBeNYnANMYGToosxs
+
 
 # # Disable proxying for specific classes or associations
 # spring.jpa.properties.hibernate.enable_lazy_load_no_trans=false
